@@ -1,7 +1,7 @@
 # sna.rb 
 require 'rubygems'
 require 'sinatra'
-
+require 'haml'
 enable :run
 
 get '/' do
