@@ -3,17 +3,24 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 
-enable :run
+set :haml, {:format => :html5 }
+set :views, File.dirname(__FILE__) + "/views"
+set :public, File.dirname(__FILE__) + "/public"
+set :run, true
 
-get '/' do
-  'Hello world!'
+#Categories
+get '/categories' do
+  haml :'categories/index'
+end
+
+get '/categories/:id' do
+  @category = params[:id]
+  haml :'categories/show'
+end
+
+#Feeds
+get '/feeds' do
+  haml :'feeds/show'
 end
 
 __END__
-
-@@ layout
-%html
-%head
-  = stylesheet_link_tag 'default'
-%body
-  = yield
