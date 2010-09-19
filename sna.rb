@@ -13,4 +13,7 @@ __END__
 
 @@ layout
 %html
+%head
+  = stylesheet_link_tag 'default'
+%body
   = yield
