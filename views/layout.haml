@@ -2,15 +2,26 @@
 %html
   %head
     %title Simple News Aggregation
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/stylesheets/960.css", :media => "screen"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/stylesheets/reset.css", :media => "screen"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/stylesheets/text.css", :media => "screen"}
     %link{:rel => "stylesheet", :type => "text/css", :href => "/stylesheets/default.css", :media => "screen"}
   %body
-    #sidebar
-    #main
-      #header
+    #header
+      .container_12
         #logo
-          %h1 IMAGE
+          .grid_2
+            %h1 IMAGE
         #pageinfo
-          %h1 Simple News Aggregation 
-          %h4 Simple News Aggregation - web and topical feeds reader
-      #container
-        = yield
+          .grid_6
+            %h1 Simple News Aggregation 
+            %h4 Simple News Aggregation - web and topical feeds reader
+        #side_1
+          .grid_4
+    #main
+      .container_12
+        #container
+          .grid_8
+            = yield
+        #side_2
+          .grid_4

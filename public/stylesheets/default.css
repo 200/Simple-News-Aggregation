@@ -1,38 +1,5 @@
 html, body {
-  height: 100%
+  height:100%;
 }
-
-body {
-  margin: 0 0 0 8em;
-}
-
-#main {
-  float: left;
-}
-/* SIDEBAR */
-#sidebar {
-  border-radius: 1em 0 0 1em;
-  float: right;
-  background: navy;
-  width: 17em;
-  min-height: 100%;
-}
-
-/* HEADER */
-#header {
-  margin-bottom: 7em;
-}
-
-#logo {
-  float: left;
-  margin-right: 4em;
-}
-
-#pageinfo {
-  float: right;
-}
-
-/* CONTAINER */
-#container {
-  padding: 2em 
+#side_1, #side_2 {
 }
