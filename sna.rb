@@ -10,13 +10,27 @@ set :run, true
 
 #Categories
 get '/categories' do
+  @categories = Category.find_all
   haml :'categories/index'
 end
 
 get '/categories/:id' do
-  @category = params[:id]
+  @category = Category.find(params[:id])
   haml :'categories/show'
 end
+
+get 'categories/new' do
+  @category = Category.new
+  haml :'catgories/new'
+end
+
+get 'categories/:id/edit' do
+  @category = Category.find(params[:id])
+  haml :'categories/new'
+end
+
+post ''
+
 
 #Feeds
 get '/feeds' do
