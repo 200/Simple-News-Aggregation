@@ -1,2 +1,5 @@
 #If you have problems with ruby 1.9.2
 gem install --pre sinatra
+gem install dm-core
+gem install dm-migrations
+gem install dm-postgres-adapter
