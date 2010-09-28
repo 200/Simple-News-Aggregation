@@ -82,7 +82,14 @@ end
 
 #Feeds
 get '/feeds' do
-  haml :'feeds/show'
+  @feeds = Feed.all
+  @feed = Feed.new(:url => 'http://lifehacker.com/5649803/background-listening-and-passive-exposure-can-improve-your-skills',
+              :title => 'Test feed',
+              :permalink => 'lifehacker.com',
+              :accepted => true,
+              :timestamps => Time.now,
+            )
+  haml :'feeds/index'
 end
 
 __END__

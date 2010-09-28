@@ -1,1 +1,14 @@
-%p Hello you are watching index page. Hello you are watching index page. Hello you are watching index page. Hello you are watching index page.
+#categories
+  .container_12
+    #content
+      .grid_8
+        - Category.each do |category|
+          %h3= Category.name
+          %ul
+            - category.feeds.each do |feed|
+              %li= link_to "#{feed.title}", feed.
+            
+    #sidebar
+      .grid_4
+        %h3 Last 10 news:
+

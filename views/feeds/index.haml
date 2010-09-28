@@ -1,0 +1,13 @@
+.grid_8
+  #feeds_list
+    -@entries do |entry|
+      %h3= feed.title
+      %h6= feed.timestamps
+      %h6 Author
+      %h5= feed.author
+      %p= feed.short_feed
+      = link_to 
+#sidebar
+  .grid_4
+//    -@last_entries.each do |entry|
+//      %h6= link_to "#{entry.title}", entry.feed_id
