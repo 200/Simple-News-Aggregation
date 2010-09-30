@@ -1,14 +1,15 @@
-#categories
-  .container_12
-    #content
-      .grid_8
-        - Category.each do |category|
-          %h3= Category.name
-          %ul
-            - category.feeds.each do |feed|
-              %li= link_to "#{feed.title}", feed.
-            
-    #sidebar
-      .grid_4
-        %h3 Last 10 news:
-
+.grid_8
+  #content
+    - if locals[:categories]
+      - locals[:categories].each do |category|
+        %h3= category.name
+        %ul
+          - category.feeds.each do |feed|
+            %li= feed.title
+.grid_4
+  #sidebar
+    - if locals[:last_feeds]
+      %h3 Last 10 news:
+      %ul
+        - locals[:last_feeds].each do |feed|
+          %li= "#{feed.title} #{feed.timestamps}"

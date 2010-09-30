@@ -1,0 +1,19 @@
+#side_1 {
+  border-radius: 1em 0 0 0;
+  background: #336699;
+  height: 133px;}
+#sidebar {
+  background: #336699;
+  min-height: 600px; 
+  padding: 0 1em 1em 1em;
+}
+#sidebar h3{
+  background: white;
+  padding-left: 1em; 
+  border-radius: 8px;
+}
+#sidebar li{
+  list-style: none;
+}
+#content {
+  margin-left: 1em}

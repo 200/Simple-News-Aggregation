@@ -1,9 +1,14 @@
-# sna.rb 
-require 'rubygems'
 require 'sinatra'
+require 'sinatra/mapping'
 require 'haml'
 require 'dm-core'
 require 'dm-migrations'
+require 'dm-constraints'
+
+set :haml, {:format => :html5 }
+set :views, File.dirname(__FILE__) + "/views"
+set :public, File.dirname(__FILE__) + "/public"
+set :run, true
 
 DataMapper.setup(:default ,'postgres://localhost/sna_development')
 
@@ -27,9 +32,8 @@ class Feed
   property :permalink, String
   property :accepted, Boolean
   property :timestamps, DateTime
-  property :category_id, Integer
 
-  belongs_to :category
+  belongs_to :category, :child_key => [ :category_id ]
   has n, :entries
 end
 
@@ -42,28 +46,37 @@ class Entry
   property :id, Serial
   property :summary, Text
   property :timestamps, DateTime
-  property :feed_id, Integer
 
-  belongs_to :feed
+  belongs_to :feed, :child_key => [ :feed_id ]
 end
 
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 
-set :haml, {:format => :html5 }
-set :views, File.dirname(__FILE__) + "/views"
-set :public, File.dirname(__FILE__) + "/public"
-set :run, true
+#Test data
+unless Category.first
+  category1 = Category.create(:name => "category1", :permalink => "link")
+  category2 = Category.create(:name => "category2", :permalink => "link2")
+  category3 = Category.create(:name => "category3", :permalink => "link3")
+  category4 = Category.create(:name => "category4", :permalink => "link4")
+
+  feed1 = Feed.create(:url => "url.com", :title => "feed1", :permalink => "sna.com",
+                    :accepted => true, :category_id => 1 )
+
+  feed2 = Feed.create(:url => "url.com", :title => "feed2", :permalink => "sna.com",
+                    :accepted => true, :category_id => 1 )
+end
 
 #Routes
-
 #Categories
 get '/categories' do
-#  @categories = Category.find_all
-  haml :'categories/index'
+  haml :'categories/index',
+       :locals => { :categories => Category.all,
+                    :last_feeds => Feed.all(:limit => 10,
+                                            :order => "timestamps") }
 end
 
 get '/categories/:id' do
-#  @category = Category.find(params[:id])
+  @category = Category.find(params[:id])
   haml :'categories/show'
 end
 
@@ -82,14 +95,5 @@ end
 
 #Feeds
 get '/feeds' do
-  @feeds = Feed.all
-  @feed = Feed.new(:url => 'http://lifehacker.com/5649803/background-listening-and-passive-exposure-can-improve-your-skills',
-              :title => 'Test feed',
-              :permalink => 'lifehacker.com',
-              :accepted => true,
-              :timestamps => Time.now,
-            )
   haml :'feeds/index'
 end
-
-__END__
