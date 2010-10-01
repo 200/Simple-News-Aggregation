@@ -50,20 +50,29 @@ class Entry
   belongs_to :feed, :child_key => [ :feed_id ]
 end
 
-DataMapper.auto_upgrade!
+DataMapper.auto_migrate!
 
 #Test data
 unless Category.first
-  category1 = Category.create(:name => "category1", :permalink => "link")
-  category2 = Category.create(:name => "category2", :permalink => "link2")
-  category3 = Category.create(:name => "category3", :permalink => "link3")
-  category4 = Category.create(:name => "category4", :permalink => "link4")
+  7.times do
+    Category.create(:name => "category1", :permalink => "link")
+  end
 
-  feed1 = Feed.create(:url => "url.com", :title => "feed1", :permalink => "sna.com",
-                    :accepted => true, :category_id => 1 )
-
-  feed2 = Feed.create(:url => "url.com", :title => "feed2", :permalink => "sna.com",
-                    :accepted => true, :category_id => 1 )
+  7.times do
+    Feed.create(:url => "url.com",
+                :title => "feed1",
+                :permalink => "sna.com",
+                :accepted => true,
+                :category_id => 1
+               )
+  end
+  Feed.create(:url => "url.com",
+              :title => "feed1",
+              :permalink => "sna.com",
+              :accepted => true,
+              :category_id => 1, 
+              :timestamps => Time.now
+             )
 end
 
 #Routes
@@ -72,7 +81,8 @@ get '/categories' do
   haml :'categories/index',
        :locals => { :categories => Category.all,
                     :last_feeds => Feed.all(:limit => 10,
-                                            :order => "timestamps") }
+                                            :order => "timestamps"),
+                  }
 end
 
 get '/categories/:id' do
@@ -88,12 +98,4 @@ end
 get 'categories/:id/edit' do
 #  @category = Category.find(params[:id])
   haml :'categories/new'
-end
-
-# post ''
-
-
-#Feeds
-get '/feeds' do
-  haml :'feeds/index'
 end

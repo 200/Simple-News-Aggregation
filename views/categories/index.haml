@@ -4,12 +4,14 @@
       - locals[:categories].each do |category|
         %h3= category.name
         %ul
-          - category.feeds.each do |feed|
-            %li= feed.title
+          - category.feeds(:order => "timestamps", :limit => 5).each do |feed|
+            %li= "#{feed.title} (#{feed.timestamps})"
+          - if category.feeds.first
+            %li (see more)
 .grid_4
   #sidebar
     - if locals[:last_feeds]
       %h3 Last 10 news:
       %ul
         - locals[:last_feeds].each do |feed|
-          %li= "#{feed.title} #{feed.timestamps}"
+          %li= "#{feed.title} (#{feed.timestamps})"

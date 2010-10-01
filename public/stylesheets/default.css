@@ -12,7 +12,7 @@
   padding-left: 1em; 
   border-radius: 8px;
 }
-#sidebar li{
+li {
   list-style: none;
 }
 #content {
