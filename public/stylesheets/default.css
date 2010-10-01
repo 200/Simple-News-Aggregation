@@ -17,3 +17,8 @@ li {
 }
 #content {
   margin-left: 1em}
+#empty {
+  background: #336699;
+  border-radius: 8px;
+  padding-left: 1em;
+}

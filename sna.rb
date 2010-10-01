@@ -53,27 +53,6 @@ end
 DataMapper.auto_migrate!
 
 #Test data
-unless Category.first
-  7.times do
-    Category.create(:name => "category1", :permalink => "link")
-  end
-
-  7.times do
-    Feed.create(:url => "url.com",
-                :title => "feed1",
-                :permalink => "sna.com",
-                :accepted => true,
-                :category_id => 1
-               )
-  end
-  Feed.create(:url => "url.com",
-              :title => "feed1",
-              :permalink => "sna.com",
-              :accepted => true,
-              :category_id => 1, 
-              :timestamps => Time.now
-             )
-end
 
 #Routes
 #Categories
