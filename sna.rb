@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sinatra/mapping'
 require 'haml'
 require 'dm-core'
 require 'dm-migrations'
@@ -51,30 +50,40 @@ class Entry
 end
 
 DataMapper.auto_migrate!
+unless Category.first
+  category1 = Category.create(:name => "category1", :permalink => "link")
+  category2 = Category.create(:name => "category2", :permalink => "link2")
+  category3 = Category.create(:name => "category3", :permalink => "link3")
+  category4 = Category.create(:name => "category4", :permalink => "link4")
 
+  feed1 = Feed.create(:url => "url.com", :title => "feed1", :permalink => "sna.com",
+                    :accepted => true, :category_id => 1 )
+
+  feed2 = Feed.create(:url => "url.com", :title => "feed2", :permalink => "sna.com",
+                    :accepted => true, :category_id => 1 )
+  entry1 = Entry.create(:url => "url.com", :title => "title", :feed_id => 2,
+                        :author => "goozzik", :summary => "testowy entry", :timestamps => Time.now)
+  entry2 = Entry.create(:url => "url.com", :title => "title", :feed_id => 1,
+                        :author => "goozzik", :summary => "testowy entry", :timestamps => Time.now)
+
+end
 #Test data
 
 #Routes
 #Categories
 get '/categories' do
   haml :'categories/index',
-       :locals => { :categories => Category.all,
+       :locals => { 
+                    :categories => Category.all,
                     :last_feeds => Feed.all(:limit => 10,
-                                            :order => "timestamps"),
+                                            :order => "timestamps")
                   }
 end
 
 get '/categories/:id' do
-  @category = Category.find(params[:id])
-  haml :'categories/show'
-end
-
-get 'categories/new' do
-#  @category = Category.new
-  haml :'catgories/new'
-end
-
-get 'categories/:id/edit' do
-#  @category = Category.find(params[:id])
-  haml :'categories/new'
+  haml :'categories/show',
+       :locals => { 
+                    :categories => Category.all,
+                    :category => Category.get(params[:id])
+                  }
 end
