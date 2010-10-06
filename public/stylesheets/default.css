@@ -45,15 +45,9 @@ li {
 }
 /**/
 
-#empty {
-  background: #336699;
-  border-radius: 8px;
-  padding-left: 1em;
-}
 #tip {
   background: #336699;
-  padding: 1em;
   border-radius: 8px;
-} 
-
+  padding: 1em;
+}
   

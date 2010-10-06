@@ -1,24 +1,24 @@
 .grid_8
   #content
-    - if locals[:category].feeds.count > 0
-      %h2= locals[:category].name 
-      #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
-      .spacer1
-      - locals[:category].feeds.each do |feed|
-        %h3= feed.title 
-        %ul
-          - feed.entries.each do |entry|
-            %li= "#{entry.title} #{entry.timestamps}"
-          - if feed.entries.count > 5
-            %li (see more)
-    - else 
-      #tip This category is empty. Use form on your right to add first feed to this category!
+    %h2 Category1 
+    #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
+    .spacer1
+    %h3 feed1
+    %ul
+      %li entry (data)
+      %li entry (data)
+      %li entry (data)
+      %li entry (data)
+      %li entry (data)
+      %li (side more)
+    %h3 feed2
 .grid_4
   #sidebar
     %h3 Other categories: 
     %ul
-      - locals[:categories].each do |category|
-        %li= category.name
+      %li Category
+      %li Category
+      %li Category
     %h3 Add your feed:
     %form{ :action => '#', :method => 'POST' }
       %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}

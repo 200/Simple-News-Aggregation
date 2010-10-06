@@ -1,0 +1,8 @@
+.grid_8
+  #tip This category is empty. Use form on your right to add first feed to this category!
+.grid_4
+  #sidebar
+    %h3 Add your feed:
+    %form{ :action => '#', :method => 'POST' }
+      %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}
+      %input{ :type => 'submit', :value => 'Add' }

@@ -1,20 +1,23 @@
 .grid_8
   #content
-    - if locals[:categories]
-      - locals[:categories].each do |category|
-        %h3= category.name
-        %ul
-          - category.feeds(:order => "timestamps", :limit => 5).each do |feed|
-            %li= "#{feed.title} (#{feed.timestamps})"
-          - if category.feeds.count > 5
-            %li (see more)
-    - else
-      #empty
-        %h5 We are sorry, but there is no any category yet. Please try again tommorow.
+    %h3 Category1 
+    %ul
+      %li feed1
+      %li feed2
+      %li feed6
+      %li feed7
+      %li feed9
+      %li (see more)
+    %h3 Category2
+    %ul
+      %li feed3
+      %li feed4
+      %li feed5
 .grid_4
   #sidebar
-    - if locals[:last_feeds]
-      %h3 Last 10 news:
-      %ul
-        - locals[:last_feeds].each do |feed|
-          %li= "#{feed.title} (#{feed.timestamps})"
+    %h3 Last 10 news:
+    %ul
+      %li last new1
+      %li last new2
+      %li last new3
+      %li last new4
