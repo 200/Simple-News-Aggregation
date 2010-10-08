@@ -25,3 +25,11 @@ end
 get '/feeds' do
   haml :'feeds/index'
 end
+
+get '/feeds/show' do
+  haml :'feeds/show'
+end
+
+get '/admin' do
+  haml :'admin/panel'
+end
