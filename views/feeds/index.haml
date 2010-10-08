@@ -1,13 +1,23 @@
 .grid_8
-  #feeds_list
-    -@entries do |entry|
-      %h3= feed.title
-      %h6= feed.timestamps
-      %h6 Author
-      %h5= feed.author
-      %p= feed.short_feed
-      = link_to 
-#sidebar
-  .grid_4
-//    -@last_entries.each do |entry|
-//      %h6= link_to "#{entry.title}", entry.feed_id
+  #content
+    %h3 News1 (12:22 12.06.2001) by goozzik
+    %p this is text of news
+    %a{:href => '#'} (see more)
+
+    %h3 News2 (12:22 12.06.2001) by goozzik
+    %p this is text of news
+    %a{:href => '#'} (see more)
+
+    %h3 News3 (12:22 12.06.2001) by goozzik
+    %p this is text of news
+    %a{:href => '#'} (see more)
+
+
+.grid_4
+  #sidebar
+    %h3 Last 10 news:
+    %ul
+      %li last new1
+      %li last new2
+      %li last new3
+      %li last new4

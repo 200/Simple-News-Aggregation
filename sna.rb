@@ -21,3 +21,7 @@ end
 get '/categories/show/empty' do
   haml :'categories/show_empty'
 end
+
+get '/feeds' do
+  haml :'feeds/index'
+end
