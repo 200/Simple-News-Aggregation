@@ -43,6 +43,10 @@ li {
 #content h2 {
   text-align: center;
 }
+
+.catcontent, .newcontent {
+  margin: 1em;
+}
 /**/
 
 #tip {
@@ -50,4 +54,6 @@ li {
   border-radius: 8px;
   padding: 1em;
 }
-  
+
+
+

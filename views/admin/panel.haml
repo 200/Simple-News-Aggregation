@@ -1,0 +1,22 @@
+.grid_8
+  #content
+    %h3 Category1
+    .catcontent
+      %h3 Add your feed:
+      %form{ :action => '#', :method => 'POST' }
+        %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}
+        %input{ :type => 'submit', :value => 'Add' }
+      .spacer1
+      %ul
+        %li feed1 (remove) 
+        %li feed2 (remove)
+        %li feed3 (remove)
+      %ul
+        %li feed4 (accept | decline)
+        %li feed5 (accept | decline)
+        %li feed6 (accept | decline)
+        %li feed7 (accept | decline)
+    %h3 Category2
+    .catcontent
+.grid_4
+  #sidebar
