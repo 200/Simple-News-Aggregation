@@ -1,23 +1,24 @@
-.grid_8
-  #content
-    %h3 Category1 
-    %ul
-      %li feed1
-      %li feed2
-      %li feed6
-      %li feed7
-      %li feed9
-      %li (see more)
-    %h3 Category2
-    %ul
-      %li feed3
-      %li feed4
-      %li feed5
-.grid_4
-  #sidebar
-    %h3 Last 10 news:
-    %ul
-      %li last new1
-      %li last new2
-      %li last new3
-      %li last new4
+#content{:class => 'alpha grid_8'}
+  %h3 Category1 
+  %ul
+    %li feed1
+    %li feed2
+    %li feed6
+    %li feed7
+    %li feed9
+    %li
+      %a{:href => 'categories/show' } (see more)
+  %h3 Category2
+  %ul
+    %li feed3
+    %li feed4
+    %li feed5
+#sidebar{:class => 'omega grid_4'}
+  %h3 Last 10 news:
+  %ul
+    %li
+      %a{:href => 'feeds/show'} last new1
+    %li
+      %a{:href => 'feeds/show'} last new1
+    %li
+      %a{:href => 'feeds/show'} last new1

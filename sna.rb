@@ -6,6 +6,10 @@ set :views, File.dirname(__FILE__) + "/views"
 set :public, File.dirname(__FILE__) + "/public"
 set :run, true
 
+get '/' do
+  haml :'index/index'
+end
+
 get '/categories' do
   haml :'categories/index'
 end

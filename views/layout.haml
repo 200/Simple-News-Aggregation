@@ -9,15 +9,12 @@
   %body
     #header
       .container_12
-        #logo
-          .grid_2
-            %h1 IMAGE
-        #pageinfo
-          .grid_6
-            %h1 Simple News Aggregation 
-            %h6 Simple News Aggregation - web and topical feeds reader
-        .grid_4
-          #side_1
+        #pageinfo{:class => 'alpha grid_8'} 
+          %h2 Simple News Aggregation
+        #navigation{:class => 'omega grid_4'}
+          %a{:href => 'categories'} Categories 
+          %a{:href => 'feeds'} Feeds
+          %a{:href => 'admin'} Panel 
     #main
       .container_12
         = yield

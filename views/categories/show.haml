@@ -1,25 +1,23 @@
-.grid_8
-  #content
-    %h2 Category1 
-    #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
-    .spacer1
-    %h3 feed1
-    %ul
-      %li entry (data)
-      %li entry (data)
-      %li entry (data)
-      %li entry (data)
-      %li entry (data)
-      %li (side more)
-    %h3 feed2
-.grid_4
-  #sidebar
-    %h3 Other categories: 
-    %ul
-      %li Category
-      %li Category
-      %li Category
-    %h3 Add your feed:
-    %form{ :action => '#', :method => 'POST' }
-      %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}
-      %input{ :type => 'submit', :value => 'Add' }
+#content{:class => 'alpha grid_8'}
+  %h2 Category1 
+  #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
+  .spacer1
+  %h3 feed1
+  %ul
+    %li entry (data)
+    %li entry (data)
+    %li entry (data)
+    %li entry (data)
+    %li entry (data)
+    %li (side more)
+  %h3 feed2
+#sidebar{:class => 'omega grid_4'}
+  %h3 Other categories: 
+  %ul
+    %li Category
+    %li Category
+    %li Category
+  %h3 Add your feed:
+  %form{ :action => '#', :method => 'POST' }
+    %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}
+    %input{ :type => 'submit', :value => 'Add' }
