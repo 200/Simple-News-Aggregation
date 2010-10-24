@@ -1,0 +1,27 @@
+#content{:class => 'alpha grid_8'}
+  %h3 Category1
+  %input{ :type => 'submit', :value => 'Remove'}
+  .catcontent
+    
+    .spacer1
+    %ul
+      %li feed1 (remove) 
+      %li feed2 (remove)
+      %li feed3 (remove)
+    %ul
+      %li feed4 (accept | decline)
+      %li feed5 (accept | decline)
+      %li feed6 (accept | decline)
+      %li feed7 (accept | decline)
+    %form{ :id => 'new_category', :action => '#', :method => 'POST' }
+      %input{ :type => 'text', :id => 'feed_url', :value => 'Url to your feed'}
+      %input{ :type => 'submit', :value => 'Add' }
+  .spacer1
+  %h3 Category
+  .catcontent
+#sidebar{:class => 'omega grid_4'}
+  %h3 Add new category:
+  %form{ :action => '#', :method => 'POST' }
+    %input{ :type => 'text', :id => 'category', :value => 'Category name'}
+    %input{ :type => 'submit', :value => 'Add' }
+

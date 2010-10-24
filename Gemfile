@@ -13,6 +13,7 @@ gem 'cucumber'
 gem 'rspec-rails'
 gem 'spork'
 gem 'launchy' 
+gem 'haml', '3.0.18'
 
 # Use unicorn as the web server
 # gem 'unicorn'

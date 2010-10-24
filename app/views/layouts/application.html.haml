@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Simple News Aggregation
+    = stylesheet_link_tag '960.css', :media => "screen"
+    = stylesheet_link_tag 'reset.css', :media => "screen"
+    = stylesheet_link_tag 'text.css', :media => "screen"
+    = stylesheet_link_tag 'default.css', :media => "screen"
+  %body
+    #header
+      .container_12
+        #pageinfo{:class => 'alpha grid_8'} 
+          %h2 Simple News Aggregation
+        #navigation{:class => 'omega grid_4'}
+          %a{:href => 'categories'} Categories 
+          %a{:href => 'feeds'} Feeds
+          %a{:href => 'admin'} Panel 
+    #main
+      .container_12
+        = yield
+
