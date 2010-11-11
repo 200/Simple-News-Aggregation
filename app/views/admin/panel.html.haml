@@ -1,7 +1,7 @@
 #content{:class => 'alpha grid_8'}
   - @categories.each do |category|
     %h3= category.name
-    = button_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
+    = button_to 'Destroy', category, :method => :delete
     .catcontent
       .spacer1
   .spacer1

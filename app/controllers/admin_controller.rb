@@ -3,5 +3,4 @@ class AdminController < ApplicationController
     @categories = Category.all
     @category = Category.new
   end
-
 end
