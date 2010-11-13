@@ -1,5 +1,9 @@
 SimpleNewsAggregation::Application.routes.draw do
-  resources :categories
+  resources :feeds
+
+  resources :categories do
+    resources :feeds
+  end
 
   match '/admin' => 'admin#panel'
   # The priority is based upon order of creation:

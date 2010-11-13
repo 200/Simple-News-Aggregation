@@ -1,12 +1,23 @@
 #content{:class => 'alpha grid_8'}
   - @categories.each do |category|
     %h3= category.name
-    = button_to 'Destroy', category, :method => :delete
+    = button_to 'Delete', category, :method => :delete
     .catcontent
       .spacer1
+      %ul
+        - category.feeds.each do |feed|
+          %li= feed.title
+      - form_for [category, Feed.new] do |f|
+        = f.label :title, "Title:"
+        = f.text_field :title
+
+        = f.label :url, "Url:"
+        = f.text_field :url
+
+        = f.submit "Add feed"
   .spacer1
 #sidebar{:class => 'omega grid_4'}
   %h3 Add new category:
   - form_for @category do |c|
     = c.text_field :name
-    = c.submit 'Create'
+    = c.submit 'Add'

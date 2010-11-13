@@ -10,11 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101111105218) do
+ActiveRecord::Schema.define(:version => 20101111133620) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feeds", :force => true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.string   "permalink"
+    t.boolean  "accepted"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
