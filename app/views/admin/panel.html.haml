@@ -4,9 +4,11 @@
     = button_to 'Delete', category, :method => :delete
     .catcontent
       .spacer1
-      %ul
-        - category.feeds.each do |feed|
-          %li= feed.title
+      - category.feeds.each do |feed|
+        %span
+          = feed.title
+          = link_to '(Delete)', feed, :method => :delete
+        %br
       - form_for [category, Feed.new] do |f|
         = f.label :title, "Title:"
         = f.text_field :title

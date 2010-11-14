@@ -67,10 +67,6 @@ class FeedsController < ApplicationController
   def destroy
     @feed = Feed.find(params[:id])
     @feed.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(feeds_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to '/admin'
   end
 end
