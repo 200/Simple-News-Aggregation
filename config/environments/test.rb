@@ -32,4 +32,8 @@ SimpleNewsAggregation::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  config.gem "rspec", :lib => false, :version => ">=2.0.1"
+  config.gem "rspec-rails", :lib => false, :version => ">=2.0.1"
+  config.gem "cucumber", :lib => false, :version => ">=0.9.2"
+  
 end

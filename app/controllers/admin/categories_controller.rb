@@ -1,0 +1,19 @@
+class Admin::CategoriesController < ApplicationController
+  def index
+    @categories = Category.all
+    @category = Category.new
+    @feed = Feed.new
+  end
+
+  def create
+    @category = Category.new(params[:category])
+    @category.save
+    redirect_to admin_root_path 
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to admin_root_path
+  end
+end

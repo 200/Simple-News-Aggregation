@@ -6,14 +6,16 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'capybara'
-gem 'database_cleaner'
-gem 'cucumber-rails'
-gem 'cucumber'
-gem 'rspec-rails'
-gem 'spork'
-gem 'launchy' 
 gem 'haml', '3.0.18'
+group :cucumber do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec-rails'
+  gem 'spork'
+  gem 'launchy' 
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'

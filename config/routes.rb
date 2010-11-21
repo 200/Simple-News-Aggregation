@@ -5,7 +5,16 @@ SimpleNewsAggregation::Application.routes.draw do
     resources :feeds
   end
 
-  match '/admin' => 'admin#panel'
+  namespace :admin do
+    resources :categories do
+      resources :feeds
+    end
+    resources :feeds
+    root :to => 'categories#index'
+  end
+
+  match 'admin/feed/accept/:id' => 'admin/feeds#accept'
+  match 'admin/feed/reject/:id' => 'admin/feeds#reject'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
