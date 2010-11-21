@@ -27,7 +27,6 @@
 #sidebar{:class => 'omega grid_4'}
   %h3 Add new category:
   - form_for([:admin, @category]) do |f|
-    
     = f.text_field :name
     = f.submit 'Add'
 

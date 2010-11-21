@@ -7,8 +7,11 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(params[:category])
-    @category.save
-    redirect_to admin_root_path 
+    if @category.save
+      redirect_to admin_root_path 
+    else
+      render :action => 'errors', :object => @category 
+    end
   end
 
   def destroy
@@ -16,4 +19,5 @@ class Admin::CategoriesController < ApplicationController
     @category.destroy
     redirect_to admin_root_path
   end
+
 end
