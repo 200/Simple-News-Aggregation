@@ -8,6 +8,7 @@ Feature: Admin Panel
   Scenario: Create category
     Given I have no categories
     And I am on the panel page
+    Then I should see "Simple News Aggregation"
     And I fill in "category_name" with "Category 0"
     And I press "category_submit"
     Then I should see "Category 0"

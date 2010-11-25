@@ -1,4 +1,6 @@
 class Admin::CategoriesController < ApplicationController
+  before_filter :authenticate unless ENV['RAILS_ENV'] == 'test'
+
   def index
     @categories = Category.all
     @category = Category.new

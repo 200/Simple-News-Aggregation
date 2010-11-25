@@ -34,6 +34,3 @@ end
 Then /^I should have category with (\d+) accepted feeds$/ do |arg1|
   Category.first.feeds.where(:accepted => true).count == arg1.to_i
 end
-
-
-
