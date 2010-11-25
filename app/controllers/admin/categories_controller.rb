@@ -10,6 +10,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category])
     if @category.save
+      flash[:notice] = 'Category has been successfully created.'
       redirect_to admin_root_path 
     else
       render :action => 'errors', :object => @category 
@@ -19,6 +20,7 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
+    flash[:notice] = 'Category has been deleted.'
     redirect_to admin_root_path
   end
 

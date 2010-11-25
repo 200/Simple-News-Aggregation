@@ -1,4 +1,6 @@
 #content{:class => 'alpha grid_8'}
+  - if flash[:notice]
+    = flash[:notice]
   - @categories.each do |category|
     %h3= category.name
     = button_to 'Delete', admin_category_path(category), :method => :delete
@@ -15,7 +17,7 @@
           = link_to 'Accept', { :controller => 'admin/feeds', :action => 'accept', :id => feed.id }
           = link_to 'Reject', { :controller => 'admin/feeds', :action => 'reject', :id => feed.id }
         %br
-      - form_for([:admin, category, @feed]) do |f|
+      = form_for([:admin, category, @feed]) do |f|
         = f.label :title, "Title:"
         = f.text_field :title
 
@@ -26,7 +28,7 @@
   .spacer1
 #sidebar{:class => 'omega grid_4'}
   %h3 Add new category:
-  - form_for([:admin, @category]) do |f|
+  = form_for([:admin, @category]) do |f|
     = f.text_field :name
     = f.submit 'Add'
 
