@@ -39,11 +39,12 @@ Feature: Admin Panel
     And I fill in "category_name" with "Category 0"
     And I press "category_submit"
     Then I should see "Name has already been taken"
-    And I should have 0 categories
+    And I should have 51 categories
   
   Scenario: Delete category
     Given I have category
     And I am on the panel page
+    And I should see "Category 0"
     And I press "Delete"
     Then I should not see "Category 0"
     And I should see "Category has been deleted."
@@ -84,7 +85,7 @@ Feature: Admin Panel
     And I fill in "feed_title" with "Feed 0"
     And I press "Add feed"
     Then I should see "Title has already been taken"
-    And I should have category with 0 feeds
+    And I should have category with 1 feeds
 
   Scenario: Delete feed from category
     Given I have category with 1 feeds
@@ -94,18 +95,13 @@ Feature: Admin Panel
     And I should see "Feed has been deleted."
     And I should have category with 0 feeds
 
-  Scenario: Accept feed proposal
-    Given I have category with 1 not accepted feeds
+  Scenario: Accept and Reject feed proposal
+    Given I have category with 2 not accepted feeds
     And I am on the panel page
     And I follow "Accept"
     Then I should see "Feed 0 Delete"
     And I should see "Feed has been accepted." 
     And I should have category with 1 accepted feeds
-
-  Scenario: Reject feed proposal
-    Given I have category with 1 not accepted feeds
-    And I am on the panel page
     And I follow "Reject"
-    Then I should not see "Feed 0"
-    And I should see "Feed has been rejected."
-    And I should have category with 0 accepted feeds
+    Then I should see "Feed has been rejected."
+    And I should have category with 1 accepted feeds
