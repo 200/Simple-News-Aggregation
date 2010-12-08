@@ -14,5 +14,5 @@
   %ul
     - @categories.each do |category|
       %li= link_to "#{category.name}", category
-  %h3 Add your feed:
-  //TODO
+  = render :partial => 'feeds/form', :locals => { :category => @category,
+                                                  :feed => @feed }

@@ -1,0 +1,10 @@
+%h3 Add your feed:
+= form_for([category, feed]) do |f|
+
+  = f.label :title, "Titile:"
+  = f.text_field :title
+  %br
+  = f.label :url, "Url:"
+  = f.text_field :url
+  %br
+  = f.submit "Add feed"
