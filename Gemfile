@@ -7,6 +7,8 @@ gem 'rails', '3.0.1'
 
 gem 'pg'
 gem 'haml', '3.0.18'
+gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => "rails3"
+gem 'agnostic-will_paginate', :require => 'will_paginate'
 group :cucumber do
   gem 'capybara'
   gem 'database_cleaner'

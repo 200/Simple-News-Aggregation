@@ -12,6 +12,6 @@ class CategoriesController < ApplicationController
 
   def last_entries
     @category = Category.find(params[:id])
-    @entries = @category.entries 
+    @entries = @category.entries.paginate(:page => params[:page], :order => 'created_at DESC', :per_page => 25) 
   end
 end
