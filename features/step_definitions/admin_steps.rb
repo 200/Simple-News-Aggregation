@@ -8,7 +8,7 @@ end
 
 Given /^I have category$/ do
   Category.delete_all
-  Category.create!(:name => "Category 0")
+  Category.create(:name => "Category 0")
 end
 
 Then /^I should have category with (\d+) feeds$/ do |arg1|
