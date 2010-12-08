@@ -17,7 +17,7 @@ module NavigationHelpers
     when /the category show/
       "/categories/#{Category.first.id}"
     when /the last entries/
-      "/last_entries?id=#{Category.first.id}"
+      "/last_entries/#{Category.first.id}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
