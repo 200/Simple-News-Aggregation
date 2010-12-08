@@ -4,7 +4,7 @@
   - @categories.each do |category|
     %h3= category.name
     = button_to 'Delete', admin_category_path(category), :method => :delete
-    .catcontent
+    .record_content
       .spacer1
       - category.feeds.where(:accepted => true).each do |feed|
         %span

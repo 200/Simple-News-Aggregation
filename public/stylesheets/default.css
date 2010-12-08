@@ -56,8 +56,7 @@ li {
   text-align: center;
 }
 
-/* Admin Panel */
-.catcontent, .newcontent {
+.record_content {
   padding-left: 2em;
 }
 

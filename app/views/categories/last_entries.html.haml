@@ -1,0 +1,13 @@
+#content{:class => 'alpha grid_8'}
+  - @entries.each do |entry|
+    %h3= link_to "#{entry.title}", entry
+    .record_content
+      = "Posted on: #{entry.created_at.strftime("%d %b %Y, %H:%M")}, Feed: "
+      = link_to "#{entry.feed.title}", entry.feed
+  .spacer1
+#sidebar{:class => 'omega grid_4'}
+  %h3= link_to "#{@category.name}", @category
+  %h3 Feeds in this Category:
+  %ul
+    - @category.feeds.each do |feed|
+      %li= link_to "#{feed.title}", feed
