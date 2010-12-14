@@ -4,14 +4,14 @@
       %h3= link_to "#{category.name}", category
       .record_content
         .spacer1
-        - category.feeds.all(:limit => 5, :order => 'updated_at DESC').each do |feed|
+        - category.feeds.all(:order => 'updated_at DESC', :limit => 5).each do |feed|
           %span= link_to "#{feed.title}", feed
           %br
   - else
-    #tip This category is empty. Use form on your right to add first feed to this category!
+    #tip Sorry, but at the moment we dont have any category. 
   .spacer1
 #sidebar{:class => 'omega grid_4'}
   %h3 Last 10 news:
   %ul
-    - @feeds.each do |feed|
-      %li= link_to "#{feed.title}", feed
+    - @entries.each do |entry|
+      %li= link_to "#{entry.title}", entry

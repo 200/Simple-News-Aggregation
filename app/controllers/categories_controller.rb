@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all(:order => 'name')
-    @feeds = Feed.all(:order => 'updated_at DESC', :limit => 10)
+    @entries = Entry.all(:order => 'updated_at DESC', :limit => 10)
   end
 
   def show
@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
 
   def last_entries
     @category = Category.find(params[:id])
-    @entries = @category.entries.paginate(:page => params[:page], :order => 'created_at DESC', :per_page => 25) 
+    @feed = Feed.new
+    @entries = @category.entries.paginate(:page => params[:page], :order => 'updated_at DESC', :per_page => 25) 
   end
 end

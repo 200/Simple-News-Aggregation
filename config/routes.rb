@@ -21,6 +21,7 @@ SimpleNewsAggregation::Application.routes.draw do
   match 'last_entries/:id' => 'categories#last_entries'
   match 'admin/feed/accept/:id' => 'admin/feeds#accept'
   match 'admin/feed/reject/:id' => 'admin/feeds#reject'
+  match 'admin/feed/update_feeds' => 'admin/feeds#update_feeds'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

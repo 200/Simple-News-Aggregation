@@ -18,9 +18,6 @@
           = link_to 'Reject', { :controller => 'admin/feeds', :action => 'reject', :id => feed.id }
         %br
       = form_for([:admin, category, @feed]) do |f|
-        = f.label :title, "Title:"
-        = f.text_field :title
-
         = f.label :url, "Url:"
         = f.text_field :url
 

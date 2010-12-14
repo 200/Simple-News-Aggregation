@@ -1,4 +1,3 @@
 class Entry < ActiveRecord::Base
-  belongs_to :feed, :touch => true 
-  
+  belongs_to :feed
 end

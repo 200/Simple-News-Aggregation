@@ -46,7 +46,7 @@ li {
 #content h2 {
   text-align: center;
 }
-#content h3 {
+#content h3,h6 {
   margin-bottom: 1px;
 }
 #tip {
