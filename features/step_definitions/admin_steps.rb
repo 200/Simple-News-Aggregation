@@ -11,26 +11,28 @@ Given /^I have category$/ do
   Category.create(:name => "Category 0")
 end
 
-Then /^I should have category with (\d+) feeds$/ do |arg1|
-  Category.first.feeds.count == arg1.to_i
+Then /^I should have (\d+) feeds$/ do |arg1|
+  Feed.count == arg1.to_i
 end
 
-Given /^I have category with (\d+) feeds$/ do |arg1|
-  Category.delete_all
-  cat = Category.create!(:name => "Category 0")
-  arg1.to_i.times do |i|
-    Feed.create!(:title => "Feed #{i}", :category_id => cat.id, :accepted => true)
-  end
+Then /^I should have some entries$/ do
+  Entry.count > 0
 end
 
-Given /^I have category with (\d+) not accepted feeds$/ do |arg1|
-  Category.delete_all
-  cat = Category.create!(:name => "Category 1")
-  arg1.to_i.times do |i|
-    Feed.create!(:title => "Feed #{i}", :category_id => cat.id)
-  end
+Given /^I have feed$/ do
+  Category.first.feeds.create(:title => "Feed 0", :accepted => true, :url => 'test')
 end
 
-Then /^I should have category with (\d+) accepted feeds$/ do |arg1|
-  Category.first.feeds.where(:accepted => true).count == arg1.to_i
+Given /^I have nil accepted feed$/ do
+  Category.first.feeds.create(:title => "Feed 0", :accepted => nil, :url => 'test')
 end
+
+Then /^I should have (\d+) accepted feeds$/ do |arg1|
+  Feed.where(:accepted => true).count == arg1.to_i 
+end
+
+Given /^I have not accepted feed$/ do
+  Category.first.feeds.create(:title => "Feed 0", :url => 'test')
+end
+
+

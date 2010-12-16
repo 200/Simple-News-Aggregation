@@ -4,12 +4,9 @@ class Admin::FeedsController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @feed = @category.feeds.build(params[:feed])
-    feed_to_parse = Feedzirra::Feed.fetch_and_parse(@feed.url)
-    @feed.title = feed_to_parse.title
-    @feed.permalink = feed_to_parse.url
-    @feed.accepted = true
-    @feed.etag = feed_to_parse.etag
-    @feed.last_modified = feed_to_parse.last_modified
+    if @feed.url
+      feed_to_parse = Feedzirra::Feed.fetch_and_parse(@feed.url)
+    end
     if @feed.save
       feed_to_parse.entries.each do |entry|
         Entry.create(:url => entry.url,
@@ -20,7 +17,12 @@ class Admin::FeedsController < ApplicationController
                      :feed_id => @feed.id,
                      :category_id => @category.id)
       end
-      @feed.update_attribute(:updated_at, @feed.entries.first.updated_at)
+      @feed.update_attributes(:updated_at => @feed.entries.first.updated_at,
+                              :title => feed_to_parse.title,
+                              :permalink => feed_to_parse.url,
+                              :accepted => true,
+                              :etag => feed_to_parse.etag,
+                              :last_modified => feed_to_parse.last_modified)
       flash[:notice] = 'Feed has been successfully added.'
       redirect_to admin_root_path 
     else

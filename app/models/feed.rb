@@ -2,9 +2,8 @@ class Feed < ActiveRecord::Base
   belongs_to :category
   has_many :entries, :dependent => :destroy
   
-  validates :title, :presence => true,
-            :uniqueness => true,
-            :length => { :maximum => 50 }
+  validates :url, :presence => true, :uniqueness => true
+
 
   def self.check_feeds_for_news
       Feed.all.each do |feed|
