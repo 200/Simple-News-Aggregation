@@ -28,7 +28,7 @@ class Feed < ActiveRecord::Base
           end
         end
         feed.update_attributes(:last_modified => updated_feed.last_modified,
-                               :etag => feed.etag,
+                               :etag => updated_feed.etag,
                                :updated_at => feed.entries.first.updated_at) 
     end
   end
