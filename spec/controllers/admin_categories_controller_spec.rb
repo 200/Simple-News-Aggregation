@@ -82,28 +82,4 @@ describe Admin::CategoriesController do
 
 end
 
-describe Admin::FeedsController do
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "assigns the requested category as @category"
-        Category.stub(:find) { mock_category }
-        post :create
-        assigns(:category).should be(mock_category)
-      end
-
-      it "assigns a newly created feed as @feed" do
-        Feed.stub(:new).with({'these' => 'params'}) { mock_feed(:save => true) }
-        post :create, :feed => {'these' => 'params'}
-        assigns(:feed).should be(mock_feed)
-      end
-
-      it "redirects to the index with a notice on successful save" do
-        Category.stub(:new) { mock_category(:save => true) }
-        post :create, :category => {}
-        flash[:notice].should_not be_nil
-        response.should redirect_to(admin_root_path)
-      end
-    end
-
-end

@@ -1,7 +1,7 @@
 #content{:class => 'alpha grid_8'}
   %h2= @category.name 
   #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
-  - @category.feeds.each do |feed|
+  - @category.feeds.all(:order => 'updated_at DESC').each do |feed|
     %h3= link_to "#{feed.title}", feed
     .record_content
       .spacer1
