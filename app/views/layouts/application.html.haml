@@ -15,9 +15,8 @@
         #pageinfo{:class => 'alpha grid_8'} 
           %h2 Simple News Aggregation
         #navigation{:class => 'omega grid_4'}
-          = link_to 'Categories', #categories_path 
-          = link_to 'Feeds', #feeds_path
-          = link_to 'Admin', #admin_path 
+          = link_to 'Categories', categories_path 
+          = link_to 'Admin', '/admin'
     #main
       .container_12
         = yield
