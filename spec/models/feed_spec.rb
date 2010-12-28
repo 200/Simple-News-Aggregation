@@ -12,8 +12,13 @@ describe Feed do
     feed_to_parse = Feedzirra::Feed.fetch_and_parse(feed.url)
     feed.add_feed_with_news
 
-    feed.entries.count.should == feed_to_parse.entries.count
-    feed.entries.first.title.should == feed_to_parse.entries.first.title
+    entry_from_db = feed.entries.last
+    entry_parsed = feed_to_parse.entries.last
+
+    entry_from_db.url.should == entry_parsed.url
+    entry_from_db.title.should == entry_parsed.title
+    entry_from_db.author.should == entry_parsed.author
+    entry_from_db.summary.should == entry_parsed.summary
 
     feed.updated_at.should == feed.entries.first(:order => 'updated_at desc').updated_at
     feed.accepted.should == true
@@ -31,10 +36,17 @@ describe Feed do
     sleep 1.hours
     updated_feed = Feedzirra::Feed.update(feed_to_parse)
     Feed.check_feeds_for_news
+    if updated_feed.new_entries.count > 0
+      entry_from_db = feed.entries.last
+      entry_from_up = updated_feed.new_entries.last
 
-    feed.entries.first(:order => 'updated_at desc').title.should == updated_feed.entries.first.title
+      entry_from_db.url.should == entry_from_up.url
+      entry_from_db.title.should == entry_from_up.title
+      entry_from_db.author.should == entry_from_up.author
+      entry_from_db.summary.should == entry_from_up.summary
 
-    feed.updated_at.should == feed.entries.first.updated_at
+      feed.updated_at.should == feed.entries.first(:order => 'updated_at desc').updated_at
+    end
     feed.etag.should == updated_feed.etag
     feed.last_modified.should == updated_feed.last_modified
   end

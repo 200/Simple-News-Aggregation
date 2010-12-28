@@ -37,17 +37,15 @@ class Feed < ActiveRecord::Base
       last_entry.url = feed.entries.first(:order => 'updated_at desc').url 
       feed_to_update.entries = [last_entry]
       updated_feed = Feedzirra::Feed.update(feed_to_update)
-      if updated_feed.new_entries > 0  
+      if updated_feed.new_entries.count > 0  
         updated_feed.new_entries.each do |entry|
           unless feed.entries.exists?(:title => entry.title)
-            Entry.create(
+            feed.entries.create(
               :url => entry.url,
               :title => entry.title,
               :author => entry.author,
               :summary => entry.summary,
-              :updated_at => entry.published,
-              :feed_id => feed.id,
-              :category_id => feed.category_id
+              :updated_at => entry.published
             )
           end
         end

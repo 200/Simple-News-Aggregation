@@ -6,7 +6,8 @@ class FeedsController < ApplicationController
       flash[:notice] = 'Feed already exists in this category.' 
       redirect_to :back 
     else
-      if parsed = (Feedzirra::Feed.fetch_and_parse(@feed.url) == (0 or 404))
+      parsed = Feedzirra::Feed.fetch_and_parse(@feed.url)
+      if parsed == 0 or parsed == 404
         flash[:notice] = 'Feed url is incorrent.'
         redirect_to :back
       else
