@@ -17,6 +17,7 @@ group :cucumber do
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'spork'
   gem 'launchy' 
 end

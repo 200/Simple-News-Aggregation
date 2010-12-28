@@ -4,7 +4,7 @@
       %h3= link_to "#{category.name}", category
       .record_content
         .spacer1
-        - category.feeds.all(:order => 'updated_at DESC', :limit => 5).each do |feed|
+        - category.feeds.where(:accepted => true).all(:order => 'updated_at DESC', :limit => 5).each do |feed|
           %span= link_to "#{feed.title}", feed
           %br
   - else

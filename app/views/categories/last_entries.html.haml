@@ -1,4 +1,5 @@
 #content{:class => 'alpha grid_8'}
+  = flash[:notice]
   %h2= "Hot news in #{@category.name}"
   - @entries.each do |entry|
     %h6= link_to "#{entry.title}", entry
@@ -12,7 +13,7 @@
   %h3= link_to "#{@category.name}", @category
   %h3 Feeds in this Category:
   %ul
-    - @category.feeds.each do |feed|
+    - @category.feeds.where(:accepted => true).each do |feed|
       %li= link_to "#{feed.title}", feed
   = render :partial => 'feeds/form', :locals => { :category => @category,
                                                   :feed => @feed }

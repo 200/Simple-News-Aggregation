@@ -28,7 +28,7 @@ class Feed < ActiveRecord::Base
   end
 
   def self.check_feeds_for_news
-    Feed.all.each do |feed|
+    Feed.where(:accepted => true).each do |feed|
       feed_to_update = Feedzirra::Parser::Atom.new
       feed_to_update.feed_url = feed.url
       feed_to_update.etag = feed.etag
@@ -37,9 +37,9 @@ class Feed < ActiveRecord::Base
       last_entry.url = feed.entries.first(:order => 'updated_at desc').url 
       feed_to_update.entries = [last_entry]
       updated_feed = Feedzirra::Feed.update(feed_to_update)
-      if updated_feed.updated?  
+      if updated_feed.new_entries > 0  
         updated_feed.new_entries.each do |entry|
-          unless Entry.exists?(:title => entry.title, :feed_id => self.id)
+          unless feed.entries.exists?(:title => entry.title)
             Entry.create(
               :url => entry.url,
               :title => entry.title,

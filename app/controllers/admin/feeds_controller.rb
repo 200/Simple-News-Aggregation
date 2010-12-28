@@ -4,7 +4,7 @@ class Admin::FeedsController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @feed = @category.feeds.build(params[:feed])
-    if Feedzirra::Feed.fetch_and_parse(@feed.url).nil?
+    if Feedzirra::Feed.fetch_and_parse(@feed.url) == 404 or 0
       flash[:notice] = 'This feed does not exist.'
       redirect_to admin_root_path
     else
@@ -27,7 +27,7 @@ class Admin::FeedsController < ApplicationController
 
   def accept
     @feed = Feed.find(params[:id])
-    @feed.update_attributes(:accepted => true)
+    @feed.add_feed_with_news
     flash[:notice] = 'Feed has been accepted.'
     redirect_to admin_root_path
   end
