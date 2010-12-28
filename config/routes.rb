@@ -1,4 +1,5 @@
 SimpleNewsAggregation::Application.routes.draw do
+  root :to => 'categories#index'
   resources :entries
 
   resources :feeds
