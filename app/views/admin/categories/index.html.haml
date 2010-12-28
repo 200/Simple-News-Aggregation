@@ -1,5 +1,6 @@
 #content{:class => 'alpha grid_8'}
-  = flash[:notice]
+  - if flash[:notice]
+    #tip= flash[:notice]
   - @categories.each do |category|
     %h3= category.name
     = button_to 'Delete', admin_category_path(category), :method => :delete

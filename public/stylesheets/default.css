@@ -45,11 +45,15 @@ li {
 /* Content */
 #content h2 {
   text-align: center;
+  background: #66FFFF;
+  border-radius: 8px;
 }
 #content h3,h6 {
   margin-bottom: 1px;
 }
+
 #tip {
+  color: white;
   background: #336699;
   border-radius: 8px;
   padding: 1em 0 1em 0;

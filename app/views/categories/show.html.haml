@@ -1,7 +1,10 @@
 #content{:class => 'alpha grid_8'}
-  = flash[:notice]
   %h2= @category.name 
-  #tip TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
+  #tip
+    - if flash[:notice]
+      = flash[:notice]
+    - else 
+      TIP: you can use form from sidebar on your right to add feed to this category. Enjoy!
   - @category.feeds.where(:accepted => true).all(:order => 'updated_at DESC').each do |feed|
     %h3= link_to "#{feed.title}", feed
     .record_content
