@@ -2,126 +2,89 @@ require 'spec_helper'
 
 describe FeedsController do
 
-  def mock_feed(stubs={})
-    (@mock_feed ||= mock_model(Feed).as_null_object).tap do |feed|
-      feed.stub(stubs) unless stubs.empty?
+  describe "POST create from categories show" do
+    before(:each) do
+      @category = Factory.create(:category)
+      @request.env['HTTP_REFERER'] = "http://localhost:3000/categories/#{@category.id}"
     end
-  end
-
-  describe "GET index" do
-    it "assigns all feeds as @feeds" do
-      Feed.stub(:all) { [mock_feed] }
-      get :index
-      assigns(:feeds).should eq([mock_feed])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested feed as @feed" do
-      Feed.stub(:find).with("37") { mock_feed }
-      get :show, :id => "37"
-      assigns(:feed).should be(mock_feed)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new feed as @feed" do
-      Feed.stub(:new) { mock_feed }
-      get :new
-      assigns(:feed).should be(mock_feed)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested feed as @feed" do
-      Feed.stub(:find).with("37") { mock_feed }
-      get :edit, :id => "37"
-      assigns(:feed).should be(mock_feed)
-    end
-  end
-
-  describe "POST create" do
 
     describe "with valid params" do
+      before(:each) do
+        @feed = Factory.attributes_for(:feed)
+      end
+
       it "assigns a newly created feed as @feed" do
-        Feed.stub(:new).with({'these' => 'params'}) { mock_feed(:save => true) }
-        post :create, :feed => {'these' => 'params'}
-        assigns(:feed).should be(mock_feed)
+        post :create, :feed => @feed, :category_id => @category.id 
+        assigns(:feed).title.should == "CNN.com"
+        assigns(:feed).accepted.should == nil
+        assigns(:feed).category_id.should == @category.id 
       end
-
-      it "redirects to the created feed" do
-        Feed.stub(:new) { mock_feed(:save => true) }
-        post :create, :feed => {}
-        response.should redirect_to(feed_url(mock_feed))
+      
+      it "redirects to the back page with a notice on successful save" do
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved feed as @feed" do
-        Feed.stub(:new).with({'these' => 'params'}) { mock_feed(:save => false) }
-        post :create, :feed => {'these' => 'params'}
-        assigns(:feed).should be(mock_feed)
+      it "redirects to the back page with a notice on failure save" do
+        @feed = Feed.new(:url => 'wp.pl/123412312')
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
 
-      it "re-renders the 'new' template" do
-        Feed.stub(:new) { mock_feed(:save => false) }
-        post :create, :feed => {}
-        response.should render_template("new")
+      it "redirects to the back page with a notice on failure save" do
+        @feed = Feed.new(:url => '123412312')
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
+
     end
-
   end
 
-  describe "PUT update" do
+  describe "POST create from categories last_entries" do
+    before(:each) do
+      @category = Factory.create(:category)
+      @request.env['HTTP_REFERER'] = "http://localhost:3000/last_entries/#{@category.id}"
+    end
 
     describe "with valid params" do
-      it "updates the requested feed" do
-        Feed.should_receive(:find).with("37") { mock_feed }
-        mock_feed.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :feed => {'these' => 'params'}
+      before(:each) do
+        @feed = Factory.attributes_for(:feed)
       end
 
-      it "assigns the requested feed as @feed" do
-        Feed.stub(:find) { mock_feed(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:feed).should be(mock_feed)
+      it "assigns a newly created feed as @feed" do
+        post :create, :feed => @feed, :category_id => @category.id 
+        assigns(:feed).title.should == "CNN.com"
+        assigns(:feed).accepted.should == nil
+        assigns(:feed).category_id.should == @category.id 
       end
-
-      it "redirects to the feed" do
-        Feed.stub(:find) { mock_feed(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(feed_url(mock_feed))
+      
+      it "redirects to the back page with a notice on successful save" do
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
     end
 
     describe "with invalid params" do
-      it "assigns the feed as @feed" do
-        Feed.stub(:find) { mock_feed(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:feed).should be(mock_feed)
+      it "redirects to the back page with a notice on failure save" do
+        @feed = Feed.new(:url => 'wp.pl/123412312')
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
 
-      it "re-renders the 'edit' template" do
-        Feed.stub(:find) { mock_feed(:update_attributes => false) }
-        put :update, :id => "1"
-        response.should render_template("edit")
+      it "redirects to the back page with a notice on failure save" do
+        @feed = Feed.new(:url => '123412312')
+        post :create, :feed => @feed, :category_id => @category.id 
+        flash[:notice].should_not be_nil
+        response.should redirect_to :back
       end
-    end
 
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested feed" do
-      Feed.should_receive(:find).with("37") { mock_feed }
-      mock_feed.should_receive(:destroy)
-      delete :destroy, :id => "37"
-    end
-
-    it "redirects to the feeds list" do
-      Feed.stub(:find) { mock_feed }
-      delete :destroy, :id => "1"
-      response.should redirect_to(feeds_url)
     end
   end
-
 end

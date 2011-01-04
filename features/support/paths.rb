@@ -16,7 +16,7 @@ module NavigationHelpers
       '/categories'
     when /the category show/
       "/categories/#{Category.first.id}"
-    when /the last entries/
+    when /the category last entries/
       "/last_entries/#{Category.first.id}"
 
     # Add more mappings here.

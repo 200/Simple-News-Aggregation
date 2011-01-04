@@ -1,27 +1,28 @@
 #content{:class => 'alpha grid_8'}
   - if flash[:notice]
     #tip= flash[:notice]
-  - @categories.each do |category|
-    %h3= category.name
-    = button_to 'Delete', admin_category_path(category), :method => :delete
-    .record_content
-      .spacer1
-      - category.feeds.where(:accepted => true).each do |feed|
-        %span
-          = feed.title
-          = link_to 'Delete', admin_feed_path(feed), :method => :delete
-        %br
-      - category.feeds.where(:accepted => nil).each do |feed|
-        %span
-          = feed.title
-          = link_to 'Accept', { :controller => 'admin/feeds', :action => 'accept', :id => feed.id }
-          = link_to 'Reject', { :controller => 'admin/feeds', :action => 'reject', :id => feed.id }
-        %br
-      = form_for([:admin, category, @feed]) do |f|
-        = f.label :url, "Url:"
-        = f.text_field :url
+  - if @categories
+    - @categories.each do |category|
+      %h3= category.name
+      = button_to 'Delete', admin_category_path(category), :method => :delete
+      .record_content
+        .spacer1
+        - category.feeds.where(:accepted => true).each do |feed|
+          %span
+            = feed.title
+            = link_to 'Delete', admin_feed_path(feed), :method => :delete
+          %br
+        - category.feeds.where(:accepted => nil).each do |feed|
+          %span
+            = feed.title
+            = link_to 'Accept', { :controller => 'admin/feeds', :action => 'accept', :id => feed.id }
+            = link_to 'Reject', { :controller => 'admin/feeds', :action => 'reject', :id => feed.id }
+          %br
+        = form_for([:admin, category, @feed]) do |f|
+          = f.label :url, "Url:"
+          = f.text_field :url
 
-        = f.submit "Add feed"
+          = f.submit "Add feed"
   .spacer1
 #sidebar{:class => 'omega grid_4'}
   %h3 Add new category:

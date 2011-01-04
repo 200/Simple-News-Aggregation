@@ -1,6 +1,6 @@
 #content{:class => 'alpha grid_8'}
   %h2= "Hot news in #{@category.name}"
-  -if flash[:notice]
+  - if flash[:notice]
     #tip= flash[:notice]
   - @entries.each do |entry|
     %h6= link_to "#{entry.title}", entry

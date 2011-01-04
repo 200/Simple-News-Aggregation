@@ -35,5 +35,5 @@ SimpleNewsAggregation::Application.configure do
   config.gem "rspec", :lib => false, :version => ">=2.0.1"
   config.gem "rspec-rails", :lib => false, :version => ">=2.0.1"
   config.gem "cucumber", :lib => false, :version => ">=0.9.2"
-  
+  config.gem "factory_girl_rails", :lib => 'factory_girl_rails', :version => ">=1.0" 
 end

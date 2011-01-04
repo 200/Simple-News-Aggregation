@@ -57,10 +57,11 @@ describe Admin::CategoriesController do
         assigns(:category).should be(mock_category)
       end
 
-      it "renders the 'errors' template" do
+      it "redirects to the index with a notice on failure save" do
         Category.stub(:new) { mock_category(:save => false) }
         post :create, :category => {}
-        response.should render_template("errors")
+        flash[:notice].should_not be_nil
+        response.should redirect_to(admin_root_path)
       end
     end
   end  

@@ -2,7 +2,8 @@ class Feed < ActiveRecord::Base
   belongs_to :category
   has_many :entries, :dependent => :destroy
   
-  validates :url, :presence => true, :uniqueness => true
+  validates_presence_of :url
+  validates_uniqueness_of :url, :scope => :category_id
 
   def add_feed_with_news
     feed_to_parse = Feedzirra::Feed.fetch_and_parse(self.url) 

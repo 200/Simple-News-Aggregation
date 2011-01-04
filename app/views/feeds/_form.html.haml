@@ -1,5 +1,5 @@
 %h3 Add your feed:
-= form_for([category, feed]) do |f|
+= form_for([@category, @feed]) do |f|
   = f.label :url, "Url:"
   = f.text_field :url
   %br

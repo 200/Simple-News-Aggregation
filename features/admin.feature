@@ -6,8 +6,7 @@ Feature: Admin Panel
   @category
 
   Scenario: Create category
-    Given I have no categories
-    And I am on the panel page
+    Given I am on the panel page
     And I fill in "category_name" with "Category 0"
     And I press "category_submit"
     Then I should see "Category 0"
@@ -15,24 +14,21 @@ Feature: Admin Panel
     And I should have 1 categories
 
   Scenario: Create blank name Category
-    Given I have no categories
-    And I am on the panel page
+    Given I am on the panel page
     And I fill in "category_name" with ""
     And I press "category_submit"
     Then I should see "Name can't be blank"
     And I should have 0 categories
 
   Scenario: Create too long name Category
-    Given I have no categories
-    And I am on the panel page
+    Given I am on the panel page
     And I fill in "category_name" with "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     And I press "category_submit"
     Then I should see "Name is too long (maximum is 50 characters)"
     And I should have 0 categories
 
   Scenario: Create two categories with same name
-    Given I have no categories
-    And I am on the panel page
+    Given I am on the panel page
     And I fill in "category_name" with "Category 0"
     And I press "category_submit"
     Then I should see "Category 0"
@@ -67,7 +63,7 @@ Feature: Admin Panel
     And I am on the panel page
     And I fill in "feed_url" with ""
     And I press "Add feed"
-    Then I should see "Url can't be blank"
+    Then I should see "Feed url is incorrent."
     And I should have 0 feeds
 
   Scenario: Add two same title feeds to category
@@ -94,7 +90,7 @@ Feature: Admin Panel
     And I have nil accepted feed
     And I am on the panel page
     And I follow "Accept"
-    Then I should see "Feed 0 Delete"
+    Then I should see "Wirtualna Polska Delete"
     And I should see "Feed has been accepted." 
     And I should have 1 accepted feeds
 
