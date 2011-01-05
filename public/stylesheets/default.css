@@ -63,6 +63,7 @@
 }
 #navigation a {
   margin-right: 1em;
+  text-decoration:none;
 }
 
 /* Defaults */

@@ -1,4 +1,6 @@
+
 #content{:class => 'alpha grid_8'}
+  %li= auto_discovery_link_tag(:atom, :title => 'asd')
   %h2= "Hot news in #{@category.name}"
   - if flash[:notice]
     #tip= flash[:notice]

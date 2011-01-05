@@ -26,8 +26,9 @@
   - else
     #tip TIP: you can use form from sidebar on your right to add new category.
 #sidebar{:class => 'omega grid_4'}
-  %h3 Add new category:
-  = form_for([:admin, @category]) do |f|
-    = f.text_field :name
-    = f.submit 'Add'
+  .sbform
+    %h3 Add new category:
+    = form_for([:admin, @category]) do |f|
+      = f.text_field :name
+      = f.submit 'Add'
 

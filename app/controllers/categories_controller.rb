@@ -14,5 +14,12 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @feed = Feed.new
     @entries = @category.entries.paginate(:page => params[:page], :order => 'updated_at DESC', :per_page => 25) 
+    @atom_entries = @category.entries(:order => 'updated_at DESC')
+    @atom_link = "#{@category.id}.atom"
+    respond_to do |format|
+      format.html
+      format.atom { render :action => 'last_entries', :layout => false }
+    end
   end
+
 end

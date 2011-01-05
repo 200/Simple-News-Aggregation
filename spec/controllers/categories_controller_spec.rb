@@ -51,8 +51,8 @@ describe CategoriesController do
 
     it "assigns a new feed as @feed" do
       Category.stub(:find).with("37") { mock_category }
-      get :last_entries, :id => "37"
-      assigns(:feed).should be_kind_of(Feed)
+      get :show, :id => "37"
+      assigns(:feed).should be_kind_of(Feed) 
     end
 
     it "assigns a 25 entries per page as @entries" do
@@ -60,6 +60,19 @@ describe CategoriesController do
       entries = mock_category.entries.all(:limit => 25, :order => 'updated_at DESC') 
       get :last_entries, :id => "37"
       assigns(:entries).should eq(entries) 
+    end
+
+    it "assigns all entries as @atom_entries" do
+      Category.stub(:find).with("37") { mock_category }
+      atom_entries = mock_category.entries.all(:order => 'updated_at DESC') 
+      get :last_entries, :id => "37"
+      assigns(:atom_entries).should eq(atom_entries) 
+    end
+
+    it "assigs a atom link as @atom_link" do
+      Category.stub(:find).with("37") { mock_category }
+      get :last_entries, :id => "37"
+      assigns(:atom_link).should == "#{mock_category.id}.atom"
     end
   end
 end

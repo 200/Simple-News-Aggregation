@@ -11,12 +11,15 @@
     
   %body
     #header
+      = auto_discovery_link_tag(:atom)
       .container_12
         #pageinfo{:class => 'alpha grid_8'} 
           %h2 Simple News Aggregation
         #navigation{:class => 'omega grid_4'}
           = link_to 'Categories', categories_path 
           = link_to 'Admin', '/admin'
+          - if @atom_link
+            = link_to image_tag('feed-icon.png', :size => "14x14"), @atom_link
     #main
       .container_12
         = yield
