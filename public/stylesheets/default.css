@@ -11,6 +11,7 @@
   background: #66FFFF;
   min-height: 650px; 
   border-radius: 8px;
+  -moz-border-radius: 8px;
   border: dotted 1px #336699;
 }
 
@@ -18,12 +19,14 @@
   text-align: center;
   background: white;
   border-radius: 8px;
+  -moz-border-radius: 8px;
   margin: 20px 20px 0 20px;
 }
 
 #sidebar .sbform {
   margin: 20px 20px 0 20px;
   border-radius: 8px;
+  -moz-border-radius: 8px;
   border: solid 2px white;
 }
 
@@ -35,12 +38,14 @@
 #sidebar ul {
   background: white;
   border-radius: 8px;
+  -moz-border-radius: 8px;
   margin: 5px 20px 0 20px; 
 }
 
 #sidebar .sbform h3 {
   margin: 0 0 0 0;
   border-radius: 0;
+  -moz-border-radius: 0;
 }
 
 #sidebar .sbform input#feed_url {
@@ -70,6 +75,7 @@ li {
   text-align: center;
   background: #66FFFF;
   border-radius: 8px;
+  -moz-border-radius: 8px;
 }
 #content h3,h6 {
   margin-bottom: 1px;
@@ -79,6 +85,7 @@ li {
   color: white;
   background: #336699;
   border-radius: 8px;
+  -moz-border-radius: 8px;
   padding: 1em 0 1em 0;
   text-align: center;
 }
