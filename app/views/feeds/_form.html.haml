@@ -1,6 +1,6 @@
-%h3 Add your feed:
-= form_for([@category, @feed]) do |f|
-  = f.label :url, "Url:"
-  = f.text_field :url
-  %br
-  = f.submit "Add feed"
+.sbform
+  %h3 Add your feed:
+  = form_for([@category, @feed]) do |f|
+    = f.label :url, "Url:"
+    = f.text_field :url
+    = f.submit "Add"

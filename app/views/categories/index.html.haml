@@ -1,6 +1,5 @@
 #content{:class => 'alpha grid_8'}
   - if @categories.count > 0
-
     - @categories.each do |category|
       %h3= link_to "#{category.name}", category
       .record_content
@@ -10,7 +9,6 @@
           %br
   - else
     #tip Sorry, but at the moment we dont have any category. 
-  .spacer1
 #sidebar{:class => 'omega grid_4'}
   %h3 Last 10 news:
   %ul

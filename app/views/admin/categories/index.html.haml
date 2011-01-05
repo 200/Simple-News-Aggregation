@@ -1,7 +1,7 @@
 #content{:class => 'alpha grid_8'}
   - if flash[:notice]
     #tip= flash[:notice]
-  - if @categories
+  - if @categories.count > 0
     - @categories.each do |category|
       %h3= category.name
       = button_to 'Delete', admin_category_path(category), :method => :delete
@@ -23,7 +23,8 @@
           = f.text_field :url
 
           = f.submit "Add feed"
-  .spacer1
+  - else
+    #tip TIP: you can use form from sidebar on your right to add new category.
 #sidebar{:class => 'omega grid_4'}
   %h3 Add new category:
   = form_for([:admin, @category]) do |f|
