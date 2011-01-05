@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @categories = Category.all
     @category = Category.find(params[:id])
+    @categories = Category.all
     @feed = Feed.new
   end
 

@@ -17,6 +17,7 @@
   %h3 Other categories: 
   %ul
     - @categories.each do |category|
+      - next if category == @category
       %li= link_to "#{category.name}", category
   = render :partial => 'feeds/form', :locals => { :category => @category,
                                                   :feed => @feed }

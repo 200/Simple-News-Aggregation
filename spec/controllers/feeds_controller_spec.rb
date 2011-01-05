@@ -1,6 +1,32 @@
 require 'spec_helper'
 
 describe FeedsController do
+  describe "GET show" do
+    before(:each) do
+      @category = Factory.create(:category)
+      @feed = Factory.create(:feed, :category_id => @category.id)
+      @feed_2 = Factory.create(:feed, :category_id => @category_id, :url => "http://rss.cnn.com/rss/edition_questmeansbusiness.rss")
+      @feed.add_feed_with_news
+      @feed_2.add_feed_with_news
+    end
+
+    it "assigns a 25 entries per page as @entries" do
+      entries = @feed.entries.all(:limit => 25, :order => 'updated_at DESC') 
+      get :show, :id => @feed.id 
+      assigns(:entries).should eq(entries) 
+    end
+
+    it "assigns the requested feed as @feed" do
+      get :show, :id => @feed.id 
+      assigns(:feed).should == @feed
+    end
+    
+    it "assigns a other entries as @other_entries" do
+      other_entries = Entry.find(:all, :conditions => ["feed_id != ?", @feed.id])
+      get :show, :id => @feed.id 
+      assigns(:other_entries).should == other_entries
+    end
+  end
 
   describe "POST create from categories show" do
     before(:each) do

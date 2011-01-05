@@ -29,7 +29,7 @@ describe CategoriesController do
       assigns(:category).should be(mock_category)
     end
     
-    it "assigns all categories as @categories" do
+    it "assigns other categories as @categories" do
       Category.stub(:find).with("37") { mock_category }
       get :show, :id => "37"
       assigns(:categories).should eq(Category.all)

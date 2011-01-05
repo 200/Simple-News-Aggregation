@@ -1,4 +1,10 @@
 class FeedsController < ApplicationController
+  def show
+    @feed = Feed.find(params[:id])
+    @entries = @feed.entries.paginate(:page => params[:page], :order => 'updated_at DESC', :per_page => 25) 
+    @other_entries = Entry.find(:all, :conditions => ["feed_id != ?", @feed.id]) 
+  end
+
   def create
     @category = Category.find(params[:category_id])
     @feed = @category.feeds.build(params[:feed])
