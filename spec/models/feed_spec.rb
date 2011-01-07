@@ -19,6 +19,7 @@ describe Feed do
     entry_from_db.title.should == entry_parsed.title
     entry_from_db.author.should == entry_parsed.author
     entry_from_db.summary.should == entry_parsed.summary
+    entry_from_db.content.should == entry_parsed.content
 
     feed.updated_at.should == feed.entries.first(:order => 'updated_at desc').updated_at
     feed.accepted.should == true
@@ -35,7 +36,7 @@ describe Feed do
     feed.add_feed_with_news
     Feedzirra::Feed.update(feed_to_parse)
     Feed.check_feeds_for_news
-    until feed_to_parse.updated?
+    until feed_to_parse.new_entries.count > 0
       sleep 3.minutes
       Feedzirra::Feed.update(feed_to_parse)
       Feed.check_feeds_for_news
@@ -47,6 +48,7 @@ describe Feed do
     entry_from_db.title.should == entry_from_up.title
     entry_from_db.author.should == entry_from_up.author
     entry_from_db.summary.should == entry_from_up.summary
+    entry_from_db.content.should == entry_from_up.content
 
     feed.updated_at.should == feed.entries.first(:order => 'updated_at desc').updated_at
     feed.etag.should == feed_to_parse.etag

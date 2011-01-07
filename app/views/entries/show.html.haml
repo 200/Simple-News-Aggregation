@@ -1,0 +1,24 @@
+#content{:class => 'alpha grid_8'}
+  %h6= link_to @entry.title, @entry.url
+  = "Posted on: #{@entry.updated_at.strftime("%d %b %Y, %H:%M")}"
+  - if @entry.author 
+    = ", Author: #{@entry.author}, " 
+  
+  %p
+    - if @entry.content
+      = sanitize(@entry.content)
+    - else
+      = "Go to "
+      = link_to "source", @entry.url
+      = " for more informations"
+#sidebar{:class => 'omega grid_4'}
+  %h3= link_to @entry.feed.title, @entry.feed
+  %h3 Other feeds: 
+  %ul
+    - @category_feeds.each do |feed|
+      %li= link_to feed.title, feed
+    
+  %h3
+    = link_to "<< Previous", @previous_entry
+    = " | "
+    = link_to "Next >>", @next_entry

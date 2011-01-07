@@ -80,7 +80,4 @@ describe Admin::CategoriesController do
       response.should redirect_to(admin_root_path)
     end
   end
-
 end
-
-

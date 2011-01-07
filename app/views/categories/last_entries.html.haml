@@ -1,13 +1,14 @@
-
 #content{:class => 'alpha grid_8'}
   %li= auto_discovery_link_tag(:atom, :title => 'asd')
   %h2= "Hot news in #{@category.name}"
   - if flash[:notice]
     #tip= flash[:notice]
   - @entries.each do |entry|
-    %h6= link_to "#{entry.title}", entry
-    = "Posted on: #{entry.updated_at.strftime("%d %b %Y, %H:%M")}, Feed: "
-    = link_to "#{entry.feed.title}", entry.feed
+    %h6= link_to entry.title, entry
+    = "Posted on: #{entry.updated_at.strftime("%d %b %Y, %H:%M")}, "
+    - if entry.author
+      = "Author: #{entry.author}, "
+    = link_to entry.feed.title, entry.feed
     .spacer1
   = will_paginate @entries
 #sidebar{:class => 'omega grid_4'}

@@ -11,16 +11,15 @@ gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branc
 gem 'agnostic-will_paginate', :require => 'will_paginate'
 gem 'feedzirra'
 gem 'whenever'
-group :cucumber do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'spork'
-  gem 'launchy' 
-end
+
+gem 'capybara'
+gem 'database_cleaner'
+gem 'cucumber-rails'
+gem 'cucumber'
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'spork'
+gem 'launchy' 
 
 # Use unicorn as the web server
 # gem 'unicorn'

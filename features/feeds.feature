@@ -9,7 +9,7 @@ Feature: Feeds
     Given I have category
     And I am on <page> 
     And I fill in "feed_url" with "http://rss.cnn.com/rss/edition.rss"
-    And I press "Add feed"
+    And I press "Add"
     Then I should see "Your proposal is waiting for admin acceptance."
     And I should have 1 nil accepted feeds
     Examples: Pages
@@ -22,7 +22,7 @@ Feature: Feeds
     And I have feed
     And I am on <page> 
     And I fill in "feed_url" with "http://www.wp.pl/rss.xml?id=1"
-    And I press "Add feed"
+    And I press "Add"
     Then I should see "Url"
     And I should have 0 nil accepted feeds
     Examples: Pages
@@ -34,7 +34,7 @@ Feature: Feeds
     Given I have category
     And I am on <page> 
     And I fill in "feed_url" with "<url>"
-    And I press "Add feed"
+    And I press "Add"
     Then I should see "Feed url is incorrent."
     And I should have 0 nil accepted feeds
       | page                      | url   |

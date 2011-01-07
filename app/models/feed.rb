@@ -13,6 +13,7 @@ class Feed < ActiveRecord::Base
         :title => entry.title,
         :author => entry.author,
         :summary => entry.summary,
+        :content => entry.content,
         :updated_at => entry.published,
         :feed_id => self.id,
         :category_id => self.category_id
@@ -46,6 +47,7 @@ class Feed < ActiveRecord::Base
               :title => entry.title,
               :author => entry.author,
               :summary => entry.summary,
+              :content => entry.content,
               :updated_at => entry.published
             )
           end

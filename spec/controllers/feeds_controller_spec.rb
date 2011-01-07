@@ -10,21 +10,21 @@ describe FeedsController do
       @feed_2.add_feed_with_news
     end
 
+    it "assigns the requested feed as @feed" do
+      get :show, :id => @feed.id 
+      assigns(:feed).should == @feed
+    end
+
     it "assigns a 25 entries per page as @entries" do
       entries = @feed.entries.all(:limit => 25, :order => 'updated_at DESC') 
       get :show, :id => @feed.id 
       assigns(:entries).should eq(entries) 
     end
-
-    it "assigns the requested feed as @feed" do
+       
+    it "assigns a other feed as @other_feeds" do
+      other_feeds = Feed.all(:limit => 10, :conditions => ["id != ?", @feed.id])
       get :show, :id => @feed.id 
-      assigns(:feed).should == @feed
-    end
-    
-    it "assigns a other entries as @other_entries" do
-      other_entries = Entry.find(:all, :conditions => ["feed_id != ?", @feed.id])
-      get :show, :id => @feed.id 
-      assigns(:other_entries).should == other_entries
+      assigns(:other_feeds).should == other_feeds
     end
   end
 
