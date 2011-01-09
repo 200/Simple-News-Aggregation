@@ -10,7 +10,7 @@
   - else
     #tip Sorry, but at the moment we dont have any category. 
 #sidebar{:class => 'omega grid_4'}
-  %h3 Last 10 news:
+  %h3 Last 10 news
   %ul
     - @entries.each do |entry|
       %li= link_to "#{entry.title}", entry

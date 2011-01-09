@@ -63,10 +63,13 @@
 }
 #navigation a {
   margin-right: 1em;
-  text-decoration:none;
 }
 
 /* Defaults */
+a {
+  text-decoration:none;
+}
+
 li {
   list-style: none;
 }
@@ -78,6 +81,7 @@ li {
   border-radius: 8px;
   -moz-border-radius: 8px;
 }
+
 #content h3,h6 {
   margin-bottom: 1px;
 }

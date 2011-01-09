@@ -3,7 +3,7 @@ require 'feedzirra'
 describe Feed do
   before :each do
     @feed = {
-      :url => "http://rss.cnn.com/rss/edition.rss"
+      :url => "http://feeds.gawker.com/lifehacker/full"
     }
   end
 
@@ -32,16 +32,16 @@ describe Feed do
 
   it "should create and update feed" do
     feed = Feed.create(@feed)
-    feed_to_parse = Feedzirra::Feed.fetch_and_parse(feed.url)
     feed.add_feed_with_news
-    Feedzirra::Feed.update(feed_to_parse)
+    feed_to_parse = Feedzirra::Feed.fetch_and_parse(feed.url)
     Feed.check_feeds_for_news
+    updated_feed = Feedzirra::Feed.update(feed_to_parse)
     until feed_to_parse.new_entries.count > 0
       sleep 3.minutes
-      Feedzirra::Feed.update(feed_to_parse)
       Feed.check_feeds_for_news
+      updated_feed = Feedzirra::Feed.update(feed_to_parse)
     end
-    entry_from_up = feed_to_parse.new_entries.last
+    entry_from_up = updated_feed.new_entries.first
     entry_from_db = feed.entries.find_by_title(entry_from_up.title)
 
     entry_from_db.url.should == entry_from_up.url
@@ -50,7 +50,8 @@ describe Feed do
     entry_from_db.summary.should == entry_from_up.summary
     entry_from_db.content.should == entry_from_up.content
 
-    feed.updated_at.should == feed.entries.first(:order => 'updated_at desc').updated_at
+    feed = Feed.first
+    feed.updated_at.should == feed.entries.find(:first, :order => 'updated_at desc').updated_at
     feed.etag.should == feed_to_parse.etag
     feed.last_modified.should == feed_to_parse.last_modified
   end

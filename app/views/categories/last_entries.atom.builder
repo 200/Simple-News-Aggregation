@@ -6,7 +6,11 @@ atom_feed do |feed|
   @atom_entries.each do |new|
     feed.entry(new) do |entry|
       entry.title("#{new.title} - #{new.feed.title}")
-      entry.content(new.summary)
+      if new.content
+        entry.content(new.content)
+      else new.summary
+        entry.content(new.summary)
+      end
       entry.updated(new.updated_at)
       entry.author do |author|
         author.name(new.author)

@@ -13,9 +13,12 @@
   = will_paginate @entries
 #sidebar{:class => 'omega grid_4'}
   %h3= link_to "#{@category.name}", @category
-  %h3 Feeds in this Category:
+  %h3 Feeds in this category
   %ul
     - @category.feeds.where(:accepted => true).each do |feed|
       %li= link_to "#{feed.title}", feed
   = render :partial => 'feeds/form', :locals => { :category => @category,
                                                   :feed => @feed }
+  %h3
+    - if @atom_link
+      = link_to (image_tag('feed-icon.png', :size => "20x20") + " Subscribe"), @atom_link

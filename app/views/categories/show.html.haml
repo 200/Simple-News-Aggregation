@@ -14,7 +14,7 @@
         %br
 #sidebar{:class => 'omega grid_4'}
   %h3=link_to "See last news in #{@category.name}", :action => 'last_entries', :id => @category 
-  %h3 Other categories: 
+  %h3 Other categories 
   %ul
     - @categories.each do |category|
       - next if category == @category

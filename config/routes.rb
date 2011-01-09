@@ -21,5 +21,5 @@ SimpleNewsAggregation::Application.routes.draw do
   match 'admin/feed/accept/:id' => 'admin/feeds#accept'
   match 'admin/feed/reject/:id' => 'admin/feeds#reject'
   match 'admin/feed/update_feeds' => 'admin/feeds#update_feeds'
-  match 'last_entries/:id/feeds' => 'feeds#create'
+  match 'last_entries/:category_id/feeds' => 'feeds#create'
 end

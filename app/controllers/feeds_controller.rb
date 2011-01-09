@@ -2,7 +2,7 @@ class FeedsController < ApplicationController
   def show
     @feed = Feed.find(params[:id])
     @entries = @feed.entries.paginate(:page => params[:page], :order => 'updated_at DESC', :per_page => 25) 
-    @other_feeds = Feed.all(:limit => 10,  :conditions => ["id != ?", @feed.id]) 
+    @other_feeds = Feed.all(:limit => 10,  :conditions => ["id != ? AND category_id = ?", @feed.id, @feed.category_id]) 
   end
 
   def create

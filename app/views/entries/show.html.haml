@@ -13,7 +13,7 @@
       = " for more informations"
 #sidebar{:class => 'omega grid_4'}
   %h3= link_to @entry.feed.title, @entry.feed
-  %h3 Other feeds: 
+  %h3 Other feeds 
   %ul
     - @category_feeds.each do |feed|
       %li= link_to feed.title, feed

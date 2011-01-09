@@ -5,11 +5,12 @@
     = "Posted on: #{entry.updated_at.strftime("%d %b %Y, %H:%M")}"
     - if entry.author 
       = ", Author: #{entry.author}" 
-    %p= link_to truncate(entry.summary.gsub(/<\/?.*?>/, ""), :length => 200), entry
+    -if entry.summary
+      %p= link_to truncate(entry.summary.gsub(/<\/?.*?>/, ""), :length => 200), entry
   = will_paginate @entries
 
 #sidebar{:class => 'omega grid_4'}
-  %h3 Other feeds:
+  %h3 Other feeds
   %ul
     - @other_feeds.each do |feed|
       %li= link_to "#{feed.title}", feed 

@@ -22,7 +22,7 @@ describe FeedsController do
     end
        
     it "assigns a other feed as @other_feeds" do
-      other_feeds = Feed.all(:limit => 10, :conditions => ["id != ?", @feed.id])
+      other_feeds = Feed.all(:limit => 10, :conditions => ["id != ? AND category_id = ?", @feed.id, @feed.category_id])
       get :show, :id => @feed.id 
       assigns(:other_feeds).should == other_feeds
     end
