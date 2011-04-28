@@ -1,4 +1,4 @@
-#content{:class => 'alpha grid_8'}
+#content.alpha.grid_8
   %li= auto_discovery_link_tag(:atom, :title => 'asd')
   %h2= "Hot news in #{@category.name}"
   - if flash[:notice]
@@ -11,7 +11,7 @@
     = link_to entry.feed.title, entry.feed
     .spacer1
   = will_paginate @entries
-#sidebar{:class => 'omega grid_4'}
+#sidebar.omega.grid_4
   %h3= link_to "#{@category.name}", @category
   %h3 Feeds in this category
   %ul

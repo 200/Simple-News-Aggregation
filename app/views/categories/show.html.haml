@@ -1,4 +1,4 @@
-#content{:class => 'alpha grid_8'}
+#content.alpha.grid_8
   %h2= @category.name 
   #tip
     - if flash[:notice]
@@ -12,7 +12,7 @@
       - feed.entries.all(:order => 'updated_at DESC', :limit => 5).each do |entry|
         %span= link_to "#{entry.title}", entry
         %br
-#sidebar{:class => 'omega grid_4'}
+#sidebar.omega.grid_4
   %h3=link_to "See last news in #{@category.name}", :action => 'last_entries', :id => @category 
   %h3 Other categories 
   %ul

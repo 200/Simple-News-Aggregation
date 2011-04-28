@@ -1,4 +1,4 @@
-#content{:class => 'alpha grid_8'}
+#content.alpha.grid_8
   %h6= link_to @entry.title, @entry.url
   = "Posted on: #{@entry.updated_at.strftime("%d %b %Y, %H:%M")}"
   - if @entry.author 
@@ -11,7 +11,7 @@
       = "Go to "
       = link_to "source", @entry.url
       = " for more informations"
-#sidebar{:class => 'omega grid_4'}
+#sidebar.omega.grid_4
   %h3= link_to @entry.feed.title, @entry.feed
   %h3 Other feeds 
   %ul

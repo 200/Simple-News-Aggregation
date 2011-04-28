@@ -1,4 +1,4 @@
-#content{:class => 'alpha grid_8'}
+#content.alpha.grid_8
   - if flash[:notice]
     #tip= flash[:notice]
   - if @categories.count > 0
@@ -25,7 +25,7 @@
           = f.submit "Add feed"
   - else
     #tip TIP: you can use form from sidebar on your right to add new category.
-#sidebar{:class => 'omega grid_4'}
+#sidebar.omega.grid_4
   .sbform
     %h3 Add new category
     = form_for([:admin, @category]) do |f|
