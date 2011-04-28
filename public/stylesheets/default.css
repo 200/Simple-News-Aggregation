@@ -99,3 +99,9 @@ li {
   padding-left: 2em;
 }
 
+#footer {
+  border-top: dotted 1px #336699;
+  border-bottom: dotted 1px #336699;
+  min-height: 100px;
+  background-color: #66FFFF;
+}
