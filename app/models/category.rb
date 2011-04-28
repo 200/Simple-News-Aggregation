@@ -3,5 +3,5 @@ class Category < ActiveRecord::Base
   has_many :entries, :dependent => :destroy, :through => :feeds
   validates :name, :presence => true,
                    :length => { :maximum => 50 },
-                   :uniqueness => true,
+                   :uniqueness => true
 end
